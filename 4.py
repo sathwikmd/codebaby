@@ -1,0 +1,21 @@
+from sympy import*
+x,y=symbols('x y')
+x0=0
+y0=1
+x1=0.1
+x2=0.2 
+f=x**2+y**2
+yd1=f
+yd2=diff(yd1,x)+diff(yd1,y)*f
+yd3=diff(yd2,x)+diff(yd2,y)*f
+yd4=diff(yd3,x)+diff(yd3,y)*f
+yd1=yd1.subs({x:x0,y:y0}) 
+yd2=yd2.subs({x:x0,y:y0}) 
+yd3=yd3.subs({x:x0,y:y0}) 
+yd4=yd4.subs({x:x0,y:y0}) 
+ts=y0+(x-x0)*yd1+(x-x0)**2*yd2/2+(x-x0)**3*yd3/6+(x-x0)**4*yd4/24
+yx1=ts.subs(x,x1)
+yx2=ts.subs(x,x2)
+print("Taylor series:\n y=",ts)
+print("y(",x1,")=%0.4f"%yx1)
+print("y(",x2,")=%0.4f"%yx2)
